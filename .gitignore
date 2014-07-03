@@ -4,5 +4,9 @@
 r-geodemographics.Rproj
 liverpool_OA
 J31A0301_2101_GeoPolicy_NW_OA.CSV
+<<<<<<< HEAD
 *.md
+=======
+geodemographic-analysis.md
+>>>>>>> f648ecae13b6dc72c767607976084eeadcbb1698
 figure
