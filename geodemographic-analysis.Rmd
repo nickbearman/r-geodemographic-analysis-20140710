@@ -177,7 +177,7 @@ To read in the data, we need to load another library - `maptools`. Run the lines
 #load library
 library(maptools)
 #download file
-download.file("https://raw.githubusercontent.com/nickbearman/r-geodemographic-analysis-20140710/master/liverpool_OA.zip", "liverpool_OA.zip", method = "internal")
+download.file("https://raw.githubusercontent.com/nickbearman/r-geodemographic-analysis-20140710/master/liverpool_OA.zip", "liverpool_OA.zip", method = "internal") #if you are running this on OSX, you will need to replace method = "internal" with method = "curl"
 #unzip file
 unzip("liverpool_OA.zip")
 #read in shapefile

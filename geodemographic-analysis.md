@@ -39,7 +39,7 @@ For example, the table below shows index scores for broadsheet and tabloid  news
 
 
 <!-- html table generated in R 3.0.3 by xtable 1.7-1 package -->
-<!-- Mon Jul  7 11:28:07 2014 -->
+<!-- Mon Jul  7 14:29:42 2014 -->
 <TABLE border=1>
 <TR> <TH> OAC SuperGroup </TH> <TH> Broadsheet Index Score </TH> <TH> Tabloid Index Score </TH>  </TR>
   <TR> <TD> Blue Collar Communities </TD> <TD align="right"> 73.2 </TD> <TD align="right"> 110.8 </TD> </TR>
@@ -161,7 +161,7 @@ To read in the data, we need to load another library - `maptools`. Run the lines
 #load library
 library(maptools)
 #download file
-download.file("https://raw.githubusercontent.com/nickbearman/r-geodemographic-analysis-20140710/master/liverpool_OA.zip", "liverpool_OA.zip", method = "internal")
+download.file("https://raw.githubusercontent.com/nickbearman/r-geodemographic-analysis-20140710/master/liverpool_OA.zip", "liverpool_OA.zip", method = "internal") #if you are running this on OSX, you will need to replace method = "internal" with method = "curl"
 #unzip file
 unzip("liverpool_OA.zip")
 #read in shapefile
