@@ -39,7 +39,7 @@ For example, the table below shows index scores for broadsheet and tabloid  news
 
 
 <!-- html table generated in R 3.0.3 by xtable 1.7-1 package -->
-<!-- Thu Jul  3 14:00:33 2014 -->
+<!-- Mon Jul  7 11:28:07 2014 -->
 <TABLE border=1>
 <TR> <TH> OAC SuperGroup </TH> <TH> Broadsheet Index Score </TH> <TH> Tabloid Index Score </TH>  </TR>
   <TR> <TD> Blue Collar Communities </TD> <TD align="right"> 73.2 </TD> <TD align="right"> 110.8 </TD> </TR>

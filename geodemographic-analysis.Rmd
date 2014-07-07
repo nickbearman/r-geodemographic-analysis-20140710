@@ -144,7 +144,7 @@ ggplot(oac_tabloids, aes(oac_names, tabloids)) +
   #these lines as the axis labels and these fonts
   theme(axis.title.x = element_text(size=12)) + 
   theme(axis.title.y = element_text(size=12)) + 
-  scale_y_continuous("Difference from national average for broadsheet",labels = percent_format()) +
+  scale_y_continuous("Difference from national average for tabloid",labels = percent_format()) +
   scale_x_discrete("OAC SuperGroups")
 ```
 
