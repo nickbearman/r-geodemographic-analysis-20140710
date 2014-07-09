@@ -39,7 +39,7 @@ For example, the table below shows index scores for broadsheet and tabloid  news
 
 
 <!-- html table generated in R 3.0.3 by xtable 1.7-1 package -->
-<!-- Mon Jul  7 14:29:42 2014 -->
+<!-- Wed Jul  9 13:30:47 2014 -->
 <TABLE border=1>
 <TR> <TH> OAC SuperGroup </TH> <TH> Broadsheet Index Score </TH> <TH> Tabloid Index Score </TH>  </TR>
   <TR> <TD> Blue Collar Communities </TD> <TD align="right"> 73.2 </TD> <TD align="right"> 110.8 </TD> </TR>
@@ -64,7 +64,9 @@ In the R Studio window, click New (top-left) and choose R Script (or use Ctrl-Sh
 
 ![](r-studio-new-script.png)
 
-Copy all the code in the section below and paste it into the R script window at the top. To run the code,  highlight the bit of code you want to run and then either click the 'Run' button (top right) or, and then press Ctrl-Enter on the keyboard (hold down Control and press Enter). R should create the graph, as shown in this document. If you get red error messages, check you have copied all of the code and not missed any bits out. 
+As we work through each section, copy and paste it into the new R script. Later on, we will edit this code to create a graph of index scores for tabloid newspapers. 
+
+Copy the code in the section below and paste it into the R script window at the top. To run the code,  highlight the bit of code you want to run and then either click the 'Run' button (top right) or, and then press Ctrl-Enter on the keyboard (hold down Control and press Enter). If you get any error messages, check you have copied all of the code and not missed any bits out. 
 
 
 ```r
@@ -77,6 +79,32 @@ Copy all the code in the section below and paste it into the R script window at 
   oac_broadsheets <- data.frame(oac_names,broadsheets)
 #convert the percentage values (e.g. 144%) to decimal increase or decrease (e.g. 0.44)
   oac_broadsheets$broadsheets <-  broadsheets / 100 - 1
+```
+
+This code loads some libaries, and then sets up a data frame containing the index score information. At any time, we can get R to tell us what a variable contains. Just type the variable name in the console to get R to print the variable:
+
+
+```r
+oac_broadsheets
+```
+
+```
+                     oac_names broadsheets
+1      Blue Collar Communities      -0.268
+2                  City Living       0.440
+3                  Countryside       0.039
+4           Prospering Suburbs       0.091
+5 Constrained by Circumstances      -0.218
+6               Typical Traits      -0.029
+7                Multicultural       0.202
+```
+
+Can you see how the values have been altered from an index score (where 100 is the average) to a percentage change (where 0% is the average)?
+
+The next step is to pick the colours, and then create the graph. Cooy this code, run it and then we'll play around with it. R should create the graph, as shown in this document. If you get any error messages, check you have copied all of the code and not missed any bits out. 
+
+
+```r
 #select the colours we are going to use
   my_colour <- c("#33A1C9","#FFEC8B","#A2CD5A","#CD7054","#B7B7B7","#9F79EE","#FCC08F")
 #plot the graph - this has several bits to it           
@@ -93,10 +121,9 @@ Copy all the code in the section below and paste it into the R script window at 
     scale_x_discrete("OAC SuperGroups")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
 
-
-This code uses the `ggplot` function to create a nice looking graph of the index scores (above). There is quite a lot going on in this code, but don't worry about trying to understand every command at this point. The key aspect is the `oac_broadsheets` data frame - this is where the data for the graph is stored. You can find out more about any R command by typing `?_command_` into the console. For example, `?ggplot`.
+This code uses the `ggplot` function to create a nice looking graph of the index scores (above). There is quite a lot going on in this code, but don't worry about trying to understand every command at this point. You can find out more about any R command by typing `?_command_` into the console. For example, `?ggplot`.
 
 Now instead of broadsheet readership, we will create a graph for tabloid readership. Firstly in the code you copied into the R Script window, replace this line:
 
@@ -130,7 +157,7 @@ And do the same for the rest of the code.
 
 You should end up with a graph like this:
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
 
 
 This is our new graph! Compare it with the graph above. What does it tell us about the readership of different areas? Is this a surprise?
@@ -177,7 +204,7 @@ This will read in the shapefile to a SpatialPolygonsDataFrame called `liverpool`
 plot(liverpool)
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png) 
 
 This just contains the spatial information, showing where the Output Areas are. We also need to know which Output Areas are in which SuperGroup. 
 
@@ -200,6 +227,8 @@ OAC <- subset(OAC, select = c("OA_CODE","DATA_VALUE","DATA_VALUE.1","DATA_VALUE.
 #rename columns
 colnames(OAC) <- c("OA_CODE","Supergroup Name","Supergroup Code","Group Name","Group Code","Subgroup Name","Subgroup Code")
 ```
+
+If you have time, have a look at the CSV file in Excel. Can you see how R has read it in? What do you think the `header=TRUE` and `skip=5` bits of the command mean?
 
 ## Joining Data
 
@@ -269,11 +298,15 @@ head(liverpool@data)
 5      Transient Communities         2a            ..           2a2
 ```
 
+## Graphs of Individual Newspaper Titles (optional)
+
+We also have the index scores for individual newspaper titles (https://raw.githubusercontent.com/nickbearman/r-geodemographic-analysis-20140710/master/newspapers_full.csv). If you have time, see if you can make a graph for one of these newspapers, using the code above to help. Remember to change the axis label as well!
+
+
 ## Lunch
 
 This is where I am planning to break for lunch, depending how the timing goes. If you get to this point before lunch, feel free to experiment with the code you have been using and see if you can apply some of it to your own data. 
 
-We also have the index scores for individual newspaper titles (https://raw.githubusercontent.com/nickbearman/r-geodemographic-analysis-20140710/master/newspapers_full.csv). If you have time, see if you can make a graph for one of these newspapers. Remember to change the axis label as well!
 
 ## Mapping the Data
 
@@ -287,7 +320,7 @@ my_colour <- c("#33A1C9","#FFEC8B","#A2CD5A","#CD7054","#B7B7B7","#9F79EE","#FCC
 plot(liverpool, col=my_colour[liverpool@data$Supergroup.Code], axes=FALSE,border = NA)
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png) 
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20.png) 
 
 This shows us the map, but we also need a legend and other details on it. The second stage adds these details. Copy the code below into your script, and run it. 
 
@@ -313,9 +346,13 @@ Your map should end up looking something like this:
 
 ![](Rplot-20140702-oac-liverpool.png)
 
-There is quite a lot happening here, so here is a bit of explanation. The pairs of six digit numbers represent the location of the different objects. When you plot a graph in R, the coordinates are set to the same as the spatial data (BNG in this example). So you also have to position the map items in BNG coordinates. Secondly, you can see the `cex=` command used quite a bit. This tells R to scale that item. A value of 1 represents 100%, so 0.8 get R to reduce the item in size by 20%. Try adjusting the size. 
+There is quite a lot happening here, so here is a bit of explanation. The pairs of six digit numbers represent the location of the different objects. When you plot a graph in R, the coordinates are set to the same as the spatial data (BNG in this example), so you also have to position the map items in BNG coordinates. 
 
-If you just re-run one line, R will just add that again to the plot. This can be useful if you are experimenting with the position, but you may need to run the whole block of code again to see what is going on. There is a function called `locator()` which can help you find coordinates. Run `locator()` in the console, then click anywhere in the plot window, and then click finish (top-right of the plot window). R will then give you the coordinates of where you clicked. 
+If you just re-run one line, R will just add that again to the plot. This can be useful if you are experimenting with the position, but you may need to run the whole block of code again to see what is going on.  Running the line starting with `plot(liverpool.....` will clear the plot and start again. Use this if it gets too messy. 
+
+You might need to move some of the components to have a better map layout. There is a function called `locator()` which can help you find coordinates. Run `locator()` in the console, then click anywhere in the plot window, and then click finish (top-right of the plot window). R will then give you the coordinates of where you clicked. Try adjusting the coordinates to move the North arrow to the top left of the map. 
+
+Secondly, you can see the `cex=` command used quite a bit. This tells R to scale that item. A value of 1 represents 100%, so 0.8 gets R to reduce the item in size by 20%. Try adjusting the size. 
 
 Experiment with adjusting the different elements, size, location and colour. How do you think you would add a data source to the map?
 
@@ -350,10 +387,44 @@ I've cut out a subset from the Grand Index mentioned above, and you can load thi
 ```r
 #download file
 download.file("https://raw.githubusercontent.com/nickbearman/r-geodemographic-analysis-20140710/master/newspapers_full.csv", "newspapers_full.csv", method = "internal")
+```
+
+```
+Error: unsupported URL scheme
+```
+
+```r
 #Read in CSV file called newspapers_full.csv
 newspapers_full <- read.csv("newspapers_full.csv",header=TRUE)
 #print the whole data frame to view it
 newspapers_full
+```
+
+```
+                                X Independent Daily.Telegraph Guardian
+1      1: Blue Collar Communities       74.09           76.50    72.51
+2                  2: City Living      153.59          101.48   171.60
+3                  3: Countryside      101.57          121.67    90.94
+4           4: Prospering Suburbs      105.57          127.63    94.00
+5 5: Constrained by Circumstances       78.58           82.79    73.10
+6               6: Typical Traits       96.96          103.70   102.63
+7                7: Multicultural      122.62           86.40   138.75
+  Finaicial.Times  Times Daily.Express Daliy.Mail    Sun Daily.Mirror
+1           64.01  78.73         97.76      89.07 114.53       118.56
+2          153.24 139.91         81.12      87.04  79.70        83.77
+3           98.67 106.61        127.78     115.48  96.10        93.96
+4          103.51 114.58        109.39     117.23  86.80        90.33
+5           82.29  74.28         93.11      92.75 117.37       108.68
+6           80.22 101.91         97.11     100.94  94.16        98.06
+7          149.98 103.22         87.20      88.58 105.92        98.94
+  Daily.Star
+1     133.90
+2      79.57
+3      91.31
+4      68.68
+5     129.96
+6      91.74
+7      99.50
 ```
 
 
