@@ -39,7 +39,7 @@ For example, the table below shows index scores for broadsheet and tabloid  news
 
 
 <!-- html table generated in R 3.0.3 by xtable 1.7-1 package -->
-<!-- Wed Jul  9 13:30:47 2014 -->
+<!-- Thu Jul 10 15:50:00 2014 -->
 <TABLE border=1>
 <TR> <TH> OAC SuperGroup </TH> <TH> Broadsheet Index Score </TH> <TH> Tabloid Index Score </TH>  </TR>
   <TR> <TD> Blue Collar Communities </TD> <TD align="right"> 73.2 </TD> <TD align="right"> 110.8 </TD> </TR>
@@ -387,47 +387,44 @@ I've cut out a subset from the Grand Index mentioned above, and you can load thi
 ```r
 #download file
 download.file("https://raw.githubusercontent.com/nickbearman/r-geodemographic-analysis-20140710/master/newspapers_full.csv", "newspapers_full.csv", method = "internal")
-```
-
-```
-Error: unsupported URL scheme
-```
-
-```r
 #Read in CSV file called newspapers_full.csv
 newspapers_full <- read.csv("newspapers_full.csv",header=TRUE)
+```
+
+
+
+
+```r
 #print the whole data frame to view it
 newspapers_full
 ```
 
 ```
-                                X Independent Daily.Telegraph Guardian
-1      1: Blue Collar Communities       74.09           76.50    72.51
-2                  2: City Living      153.59          101.48   171.60
-3                  3: Countryside      101.57          121.67    90.94
-4           4: Prospering Suburbs      105.57          127.63    94.00
-5 5: Constrained by Circumstances       78.58           82.79    73.10
-6               6: Typical Traits       96.96          103.70   102.63
-7                7: Multicultural      122.62           86.40   138.75
-  Finaicial.Times  Times Daily.Express Daliy.Mail    Sun Daily.Mirror
-1           64.01  78.73         97.76      89.07 114.53       118.56
-2          153.24 139.91         81.12      87.04  79.70        83.77
-3           98.67 106.61        127.78     115.48  96.10        93.96
-4          103.51 114.58        109.39     117.23  86.80        90.33
-5           82.29  74.28         93.11      92.75 117.37       108.68
-6           80.22 101.91         97.11     100.94  94.16        98.06
-7          149.98 103.22         87.20      88.58 105.92        98.94
-  Daily.Star
-1     133.90
-2      79.57
-3      91.31
-4      68.68
-5     129.96
-6      91.74
-7      99.50
+##                                 X Independent Daily.Telegraph Guardian
+## 1      1: Blue Collar Communities       74.09           76.50    72.51
+## 2                  2: City Living      153.59          101.48   171.60
+## 3                  3: Countryside      101.57          121.67    90.94
+## 4           4: Prospering Suburbs      105.57          127.63    94.00
+## 5 5: Constrained by Circumstances       78.58           82.79    73.10
+## 6               6: Typical Traits       96.96          103.70   102.63
+## 7                7: Multicultural      122.62           86.40   138.75
+##   Finaicial.Times  Times Daily.Express Daliy.Mail    Sun Daily.Mirror
+## 1           64.01  78.73         97.76      89.07 114.53       118.56
+## 2          153.24 139.91         81.12      87.04  79.70        83.77
+## 3           98.67 106.61        127.78     115.48  96.10        93.96
+## 4          103.51 114.58        109.39     117.23  86.80        90.33
+## 5           82.29  74.28         93.11      92.75 117.37       108.68
+## 6           80.22 101.91         97.11     100.94  94.16        98.06
+## 7          149.98 103.22         87.20      88.58 105.92        98.94
+##   Daily.Star
+## 1     133.90
+## 2      79.57
+## 3      91.31
+## 4      68.68
+## 5     129.96
+## 6      91.74
+## 7      99.50
 ```
-
-
 
 This gives us the index scores. For example, newspaper readers from the Blue Collar Communities are less likely than average to read the Independent. Our proposed corner shop is at coordinates 341442,388619 which we can plot on to the map using: (if the map isn't visible, then re-run the code to plot the map)
 
